@@ -1,20 +1,28 @@
 body {
-    font-family: Arial;
     margin: 0;
+    font-family: Arial;
     background: linear-gradient(135deg,#0f172a,#1e293b);
     color: white;
 }
 
-.center-box {
-    width: 300px;
-    margin: 100px auto;
-    text-align: center;
+/* login */
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* glass card */
+.card {
     background: rgba(255,255,255,0.1);
     padding: 20px;
     border-radius: 12px;
     backdrop-filter: blur(10px);
+    text-align: center;
 }
 
+/* inputs */
 input, select {
     width: 90%;
     padding: 10px;
@@ -23,6 +31,7 @@ input, select {
     border: none;
 }
 
+/* buttons */
 button {
     padding: 10px;
     margin: 5px;
@@ -37,6 +46,7 @@ button:hover {
     background: #16a34a;
 }
 
+/* layout */
 .hidden {
     display: none;
 }
@@ -48,20 +58,28 @@ button:hover {
     background: #111827;
 }
 
-.grid {
+.container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 15px;
     padding: 20px;
 }
 
-.card {
+.box {
     background: rgba(255,255,255,0.1);
     padding: 15px;
     border-radius: 10px;
     backdrop-filter: blur(10px);
 }
 
+/* list */
 ul {
     padding: 20px;
+}
+
+li {
+    margin: 10px 0;
+    padding: 10px;
+    background: rgba(255,255,255,0.1);
+    border-radius: 8px;
 }
