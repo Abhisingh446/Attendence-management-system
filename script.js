@@ -1,33 +1,36 @@
 
-// Load data
+// load data
 let students = JSON.parse(localStorage.getItem("students")) || [];
 
+// LOGIN
 function login() {
 
-    let u = document.getElementById("username").value;
-    let p = document.getElementById("password").value;
+    let u = document.getElementById("user").value;
+    let p = document.getElementById("pass").value;
 
     if (u === "admin" && p === "admin123") {
-        document.getElementById("loginPage").style.display = "none";
-        document.getElementById("dashboard").classList.remove("hidden");
+        document.getElementById("loginBox").style.display = "none";
+        document.getElementById("app").classList.remove("hidden");
         render();
     } else {
         alert("Invalid Login");
     }
 }
 
+// LOGOUT
 function logout() {
     location.reload();
 }
 
+// ADD STUDENT
 function addStudent() {
 
-    let name = document.getElementById("studentName").value;
+    let name = document.getElementById("name").value;
 
     if (name === "") return;
 
     students.push({
-        name: name,
+        name,
         present: 0,
         absent: 0
     });
@@ -36,29 +39,44 @@ function addStudent() {
     render();
 }
 
-function markPresent() {
+// MARK ATTENDANCE
+function mark(type) {
 
     let i = document.getElementById("studentSelect").value;
-    students[i].present++;
+
+    if (type === "present") {
+        students[i].present++;
+    } else {
+        students[i].absent++;
+    }
+
     save();
     render();
 }
 
-function markAbsent() {
-
-    let i = document.getElementById("studentSelect").value;
-    students[i].absent++;
+// DELETE STUDENT
+function deleteStudent(index) {
+    students.splice(index, 1);
     save();
     render();
 }
 
+// SAVE LOCAL STORAGE
 function save() {
     localStorage.setItem("students", JSON.stringify(students));
 }
 
+// PERCENTAGE
+function percent(s) {
+    let total = s.present + s.absent;
+    if (total === 0) return 0;
+    return Math.round((s.present / total) * 100);
+}
+
+// RENDER UI
 function render() {
 
-    let list = document.getElementById("studentList");
+    let list = document.getElementById("list");
     let select = document.getElementById("studentSelect");
     let report = document.getElementById("report");
 
@@ -70,31 +88,22 @@ function render() {
 
         list.innerHTML += `
             <li>
-                ${s.name} |
+                <b>${s.name}</b><br>
                 Present: ${s.present} |
                 Absent: ${s.absent} |
-                ${getPercent(s)}%
+                ${percent(s)}%
+
+                <br><button onclick="deleteStudent(${i})">Delete</button>
             </li>
         `;
 
         select.innerHTML += `<option value="${i}">${s.name}</option>`;
-    });
-
-    students.forEach(s => {
 
         report.innerHTML += `
-            <p>${s.name} → ${getPercent(s)}%</p>
+            <p>${s.name} → ${percent(s)}%</p>
         `;
     });
 }
 
-function getPercent(s) {
-
-    let total = s.present + s.absent;
-    if (total === 0) return 0;
-
-    return Math.round((s.present / total) * 100);
-}
-
-// initial render
+// INIT
 render();
