@@ -1,55 +1,81 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Attendance System</title>
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-<!-- LOGIN PAGE -->
-<div id="loginPage" class="center-box">
+<!-- LOGIN SCREEN -->
+<div id="loginBox" class="center">
 
-    <h1>Admin Login</h1>
+    <div class="card">
 
-    <input id="username" placeholder="Username">
-    <input id="password" type="password" placeholder="Password">
+        <h1>Admin Login</h1>
 
-    <button onclick="login()">Login</button>
+        <input id="user" placeholder="Username">
+        <input id="pass" type="password" placeholder="Password">
+
+        <button onclick="login()">Login</button>
+
+        <p>Default: admin / admin123</p>
+
+    </div>
 
 </div>
 
 <!-- DASHBOARD -->
-<div id="dashboard" class="hidden">
+<div id="app" class="hidden">
 
     <div class="topbar">
+
         <h2>Attendance Dashboard</h2>
+
         <button onclick="logout()">Logout</button>
+
     </div>
 
-    <div class="grid">
+    <div class="container">
 
-        <div class="card">
+        <!-- ADD STUDENT -->
+        <div class="box">
+
             <h3>Add Student</h3>
-            <input id="studentName" placeholder="Student Name">
+
+            <input id="name" placeholder="Student Name">
+
             <button onclick="addStudent()">Add</button>
+
         </div>
 
-        <div class="card">
+        <!-- MARK ATTENDANCE -->
+        <div class="box">
+
             <h3>Mark Attendance</h3>
+
             <select id="studentSelect"></select>
-            <button onclick="markPresent()">Present</button>
-            <button onclick="markAbsent()">Absent</button>
+
+            <button onclick="mark('present')">Present</button>
+            <button onclick="mark('absent')">Absent</button>
+
         </div>
 
-        <div class="card">
-            <h3>Attendance Report</h3>
+        <!-- REPORT -->
+        <div class="box">
+
+            <h3>Report</h3>
+
             <div id="report"></div>
+
         </div>
 
     </div>
 
     <h2>Student List</h2>
-    <ul id="studentList"></ul>
+
+    <ul id="list"></ul>
 
 </div>
 
