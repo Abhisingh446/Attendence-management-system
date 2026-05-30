@@ -1,23 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Attendance Management System</title>
+    <title>Attendance System</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="container">
+<!-- LOGIN PAGE -->
+<div id="loginPage" class="center-box">
 
-    <h1>Attendance Management System</h1>
+    <h1>Admin Login</h1>
 
-    <input type="text" id="studentName" placeholder="Enter Student Name">
+    <input id="username" placeholder="Username">
+    <input id="password" type="password" placeholder="Password">
 
-    <button onclick="addStudent()">
-        Add Student
-    </button>
+    <button onclick="login()">Login</button>
 
-    <h2>Students</h2>
+</div>
 
+<!-- DASHBOARD -->
+<div id="dashboard" class="hidden">
+
+    <div class="topbar">
+        <h2>Attendance Dashboard</h2>
+        <button onclick="logout()">Logout</button>
+    </div>
+
+    <div class="grid">
+
+        <div class="card">
+            <h3>Add Student</h3>
+            <input id="studentName" placeholder="Student Name">
+            <button onclick="addStudent()">Add</button>
+        </div>
+
+        <div class="card">
+            <h3>Mark Attendance</h3>
+            <select id="studentSelect"></select>
+            <button onclick="markPresent()">Present</button>
+            <button onclick="markAbsent()">Absent</button>
+        </div>
+
+        <div class="card">
+            <h3>Attendance Report</h3>
+            <div id="report"></div>
+        </div>
+
+    </div>
+
+    <h2>Student List</h2>
     <ul id="studentList"></ul>
 
 </div>
